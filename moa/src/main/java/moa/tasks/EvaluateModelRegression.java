@@ -51,7 +51,7 @@ public class EvaluateModelRegression extends RegressionMainTask {
     private static final long serialVersionUID = 1L;
 
     public ClassOption modelOption = new ClassOption("model", 'm',
-            "Classifier to evaluate.", Regressor.class, "LearnModel");
+            "Classifier to evaluate.", Regressor.class, "LearnModelRegression");
 
     public ClassOption streamOption = new ClassOption("stream", 's',
             "Stream to evaluate on.", InstanceStream.class,
