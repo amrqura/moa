@@ -28,6 +28,7 @@
 package moa.classifiers.functions;
 
 import moa.classifiers.AbstractClassifier;
+import moa.classifiers.Regressor;
 import moa.core.DoubleVector;
 import moa.core.Measurement;
 import moa.core.StringUtils;
@@ -43,7 +44,7 @@ import weka.core.Utils;
 <!-- globalinfo-end -->
  *
  */
-public class SGD extends AbstractClassifier {
+public class SGD extends AbstractClassifier implements Regressor{
 
     /** For serialization */
     private static final long serialVersionUID = -3732968666673530290L;

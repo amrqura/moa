@@ -32,6 +32,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import moa.AbstractMOAObject;
+import moa.classifiers.Regressor;
 import moa.classifiers.core.AttributeSplitSuggestion;
 import moa.classifiers.core.attributeclassobservers.AttributeClassObserver;
 import moa.classifiers.core.attributeclassobservers.FIMTDDNumericAttributeClassObserver;
@@ -49,7 +50,7 @@ import weka.core.Instance;
  * Implementation of FIMTDD, regresion tree for data streams.
  */
  
-public class FIMTDD extends HoeffdingTree {
+public class FIMTDD extends HoeffdingTree implements Regressor{
 
 	private static final long serialVersionUID = 1L;
 

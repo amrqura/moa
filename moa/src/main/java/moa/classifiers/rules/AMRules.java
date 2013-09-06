@@ -37,6 +37,7 @@ import weka.core.Utils;
 //import moa.core.Utils;
 import java.math.BigDecimal;
 import java.util.*; 
+import moa.classifiers.Regressor;
 
 /**
  * Adaptive Model Rules (AMRules), the streaming rule learning algorithm for regression problems.
@@ -69,7 +70,7 @@ import java.util.*;
  */
 
 
-public class AMRules extends AbstractClassifier{
+public class AMRules extends AbstractClassifier implements Regressor{
 	
 	private static final long serialVersionUID = 1L;
 	
