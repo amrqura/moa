@@ -33,7 +33,7 @@ import weka.core.Instance;
  * @version $Revision: 7 $
  */
 public class WindowRegressionPerformanceEvaluator extends AbstractOptionHandler
-        implements ClassificationPerformanceEvaluator {
+        implements RegressionPerformanceEvaluator {
 
     private static final long serialVersionUID = 1L;
 

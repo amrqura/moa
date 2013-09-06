@@ -30,7 +30,7 @@ import weka.core.Instance;
  * @version $Revision: 7 $
  */
 public class BasicRegressionPerformanceEvaluator extends AbstractMOAObject
-        implements ClassificationPerformanceEvaluator {
+        implements RegressionPerformanceEvaluator {
 
     private static final long serialVersionUID = 1L;
 
