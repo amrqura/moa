@@ -74,7 +74,7 @@ public class LearnModelRegression extends RegressionMainTask {
 
     @Override
     public Class<?> getTaskResultType() {
-        return Classifier.class;
+        return Regressor.class;
     }
 
     @Override
