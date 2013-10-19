@@ -61,7 +61,7 @@
     <connection>scm:hg:https://code.google.com/p/moa/</connection>
     <developerConnection>scm:hg:https://code.google.com/p/moa/</developerConnection>
     <url>http://code.google.com/p/moa</url>
-    <tag>HEAD</tag>
+    <tag>moa-pom-2013.08</tag>
   </scm>
 
   <dependencyManagement>
