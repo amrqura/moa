@@ -25,6 +25,7 @@ import java.util.Random;
 import moa.classifiers.bayes.NaiveBayes;
 import moa.classifiers.core.conditionaltests.InstanceConditionalTest;
 import moa.classifiers.core.driftdetection.ADWIN;
+import moa.core.AutoExpandVector;
 import moa.core.DoubleVector;
 import moa.core.MiscUtils;
 import moa.options.MultiChoiceOption;
@@ -120,7 +121,13 @@ public class HoeffdingAdaptiveTree extends HoeffdingTree {
             }
             return byteSize;
         }
-
+        
+        public AdaSplitNode(InstanceConditionalTest splitTest,
+                double[] classObservations, int size) {
+            super(splitTest, classObservations, size);
+            this.classifierRandom = new Random(this.randomSeed);
+        }
+             
         public AdaSplitNode(InstanceConditionalTest splitTest,
                 double[] classObservations) {
             super(splitTest, classObservations);
@@ -444,11 +451,17 @@ public class HoeffdingAdaptiveTree extends HoeffdingTree {
         return new AdaLearningNode(initialClassObservations);
     }
 
-    //@Override
+    
     @Override
     protected SplitNode newSplitNode(InstanceConditionalTest splitTest,
             double[] classObservations) {
         return new AdaSplitNode(splitTest, classObservations);
+    }
+    
+    @Override
+    protected SplitNode newSplitNode(InstanceConditionalTest splitTest,
+            double[] classObservations, int size) {
+        return new AdaSplitNode(splitTest, classObservations, size);
     }
 
     @Override
