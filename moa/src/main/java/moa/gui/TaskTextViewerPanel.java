@@ -306,6 +306,7 @@ public class TaskTextViewerPanel extends JPanel implements ActionListener {
                 int RamColumn = 2;
                 int timeColumn = 1;
                 int memoryColumn = 7;
+                int kappaTempColumn = 5;
                 String[] tokensFirstLine = firstLine.split(",");
                 int i = 0;
                 for (String s : tokensFirstLine) {
@@ -314,6 +315,8 @@ public class TaskTextViewerPanel extends JPanel implements ActionListener {
                         accuracyColumn = i;
                     } else if (s.equals("Kappa Statistic (percent)")) {
                         kappaColumn = i;
+                    } else if (s.equals("Kappa Temporal Statistic (percent)")) {
+                        kappaTempColumn = i;
                     } else if (s.equals("model cost (RAM-Hours)")) {
                         RamColumn = i;
                     } else if (s.equals("evaluation time (cpu seconds)")
@@ -329,11 +332,12 @@ public class TaskTextViewerPanel extends JPanel implements ActionListener {
                     String[] tokens = line.split(",");
                     this.acc1[0].addValue(0, round(parseDouble(tokens[accuracyColumn])));
                     this.acc1[0].addValue(1, round(parseDouble(tokens[kappaColumn])));
+                    this.acc1[0].addValue(2, round(parseDouble(tokens[kappaTempColumn])));
                     if (!isHoldOut) {
-                        this.acc1[0].addValue(2, Math.abs(parseDouble(tokens[RamColumn])));
+                        this.acc1[0].addValue(3, Math.abs(parseDouble(tokens[RamColumn])));
                     }
-                    this.acc1[0].addValue(3, round(parseDouble(tokens[timeColumn])));
-                    this.acc1[0].addValue(4, round(parseDouble(tokens[memoryColumn]) / (1024 * 1024)));
+                    this.acc1[0].addValue(4, round(parseDouble(tokens[timeColumn])));
+                    this.acc1[0].addValue(5, round(parseDouble(tokens[memoryColumn]) / (1024 * 1024)));
 
                     if (isSecondLine == true) {
                         processFrequency = Math.abs(parseDouble(tokens[0]));
