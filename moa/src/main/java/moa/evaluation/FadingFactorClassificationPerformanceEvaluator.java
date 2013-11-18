@@ -42,7 +42,7 @@ public class FadingFactorClassificationPerformanceEvaluator extends AbstractOpti
     protected double TotalweightObserved;
 
     public FloatOption alphaOption = new FloatOption("alpha",
-            'a', "Fading factor or exponential smoothing factor", .01);
+            'a', "Fading factor or exponential smoothing factor", .999);
 
     protected Estimator weightCorrect;
 
