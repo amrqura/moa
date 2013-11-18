@@ -190,7 +190,7 @@ public class EvaluatePrequentialRegression extends RegressionMainTask {
                 && ((maxSeconds < 0) || (secondsElapsed < maxSeconds))) {
             Instance trainInst = stream.nextInstance();
             Instance testInst = (Instance) trainInst.copy();
-            int trueClass = (int) trainInst.classValue();
+            double trueClass =  trainInst.classValue();
             //testInst.setClassMissing();
             double[] prediction = learner.getVotesForInstance(testInst);
             // Output prediction
