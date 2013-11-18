@@ -195,7 +195,7 @@ public class EvaluatePrequentialRegression extends RegressionMainTask {
             double[] prediction = learner.getVotesForInstance(testInst);
             // Output prediction
             if (outputPredictionFile != null) {
-                outputPredictionResultStream.println(Utils.maxIndex(prediction) + "," + trueClass);
+                outputPredictionResultStream.println(prediction[0] + "," + trueClass);
             }
 
             //evaluator.addClassificationAttempt(trueClass, prediction, testInst.weight());
