@@ -37,7 +37,8 @@ import moa.streams.InstanceStream;
 import weka.core.Instance;
 
 /**
- * Task for evaluating a classifier on a stream by testing then training with each example in sequence.
+ * Task for evaluating a classifier on a stream by testing then training with
+ * each example in sequence.
  *
  * @author Richard Kirkby (rkirkby@cs.waikato.ac.nz)
  * @version $Revision: 7 $
@@ -57,6 +58,10 @@ public class EvaluateInterleavedTestThenTrain extends MainTask {
     public ClassOption streamOption = new ClassOption("stream", 's',
             "Stream to learn from.", InstanceStream.class,
             "generators.RandomTreeGenerator");
+
+    public IntOption randomSeedOption = new IntOption(
+            "instanceRandomSeed", 'r',
+            "Seed for random generation of instances.", 1);
 
     public ClassOption evaluatorOption = new ClassOption("evaluator", 'e',
             "Classification performance evaluation method.",
@@ -91,8 +96,19 @@ public class EvaluateInterleavedTestThenTrain extends MainTask {
 
     @Override
     protected Object doMainTask(TaskMonitor monitor, ObjectRepository repository) {
+
+        String learnerString = this.learnerOption.getValueAsCLIString();
+        String streamString = this.streamOption.getValueAsCLIString();
+        //this.learnerOption.setValueViaCLIString(this.learnerOption.getValueAsCLIString() + " -r " +this.randomSeedOption);
+        this.streamOption.setValueViaCLIString(streamString + " -i " + this.randomSeedOption.getValueAsCLIString());
+
         Classifier learner = (Classifier) getPreparedClassOption(this.learnerOption);
+        if (learner.isRandomizable()) {
+            learner.setRandomSeed(this.randomSeedOption.getValue());
+            learner.resetLearning();
+        }
         InstanceStream stream = (InstanceStream) getPreparedClassOption(this.streamOption);
+
         ClassificationPerformanceEvaluator evaluator = (ClassificationPerformanceEvaluator) getPreparedClassOption(this.evaluatorOption);
         learner.setModelContext(stream.getHeader());
         int maxInstances = this.instanceLimitOption.getValue();
@@ -137,7 +153,7 @@ public class EvaluateInterleavedTestThenTrain extends MainTask {
             learner.trainOnInstance(trainInst);
             instancesProcessed++;
             if (instancesProcessed % this.sampleFrequencyOption.getValue() == 0
-                  ||  stream.hasMoreInstances() == false) {
+                    || stream.hasMoreInstances() == false) {
                 long evaluateTime = TimingUtils.getNanoCPUTimeOfCurrentThread();
                 double time = TimingUtils.nanoTimeToSeconds(evaluateTime - evaluateStartTime);
                 double timeIncrement = TimingUtils.nanoTimeToSeconds(evaluateTime - lastEvaluateStartTime);
@@ -148,23 +164,25 @@ public class EvaluateInterleavedTestThenTrain extends MainTask {
                 learningCurve.insertEntry(new LearningEvaluation(
                         new Measurement[]{
                             new Measurement(
-                            "learning evaluation instances",
-                            instancesProcessed),
+                                    "learning evaluation instances",
+                                    instancesProcessed),
                             new Measurement(
-                            "evaluation time ("
-                            + (preciseCPUTiming ? "cpu "
-                            : "") + "seconds)",
-                            time),
+                                    "evaluation time ("
+                                    + (preciseCPUTiming ? "cpu "
+                                    : "") + "seconds)",
+                                    time),
                             new Measurement(
-                            "model cost (RAM-Hours)",
-                            RAMHours)
+                                    "model cost (RAM-Hours)",
+                                    RAMHours)
                         },
                         evaluator, learner));
                 if (immediateResultStream != null) {
                     if (firstDump) {
+                        immediateResultStream.print("Learner,stream,randomSeed,");
                         immediateResultStream.println(learningCurve.headerToString());
                         firstDump = false;
                     }
+                    immediateResultStream.print(learnerString + "," + streamString + "," + this.randomSeedOption.getValueAsCLIString() + ",");
                     immediateResultStream.println(learningCurve.entryToString(learningCurve.numEntries() - 1));
                     immediateResultStream.flush();
                 }
