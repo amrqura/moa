@@ -51,11 +51,10 @@ public class BasicRegressionPerformanceEvaluator extends AbstractMOAObject
     public void addResult(Instance inst, double[] prediction) {
         if (inst.weight() > 0.0) {
             this.weightObserved += inst.weight();
-            if (prediction.length > 0 && this.weightObserved != inst.weight()) {
+            if (prediction.length > 0) {
                 this.squareError += (inst.classValue() - prediction[0]) * (inst.classValue() - prediction[0]);
                 this.averageError += Math.abs(inst.classValue() - prediction[0]);
             }
-            //System.out.println(inst.classValue()+", "+prediction[0]);
         }
     }
 
