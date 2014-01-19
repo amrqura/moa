@@ -20,7 +20,7 @@ package moa.learners;
 
 import moa.classifiers.AbstractClassifier;
 import moa.core.Measurement;
-import moa.drift.ChangeDetector;
+import moa.classifiers.core.driftdetection.ChangeDetector;
 import moa.options.ClassOption;
 import weka.core.Instance;
 

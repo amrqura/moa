@@ -16,71 +16,76 @@
  *    You should have received a copy of the GNU General Public License
  *    along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package moa.drift;
+package moa.classifiers.core.driftdetection;
 
 import moa.core.ObjectRepository;
+import moa.options.FloatOption;
 import moa.options.IntOption;
 import moa.tasks.TaskMonitor;
 
 /**
- *  Drift detection method based in DDM method of Joao Gama SBIA 2004.
+ * Drift detection method based in Geometric Moving Average Test
  *
- *  <p>João Gama, Pedro Medas, Gladys Castillo, Pedro Pereira Rodrigues: Learning
- * with Drift Detection. SBIA 2004: 286-295 </p>
  *
- *  @author Manuel Baena (mbaena@lcc.uma.es)
- *  @version $Revision: 7 $
+ * @author Manuel Baena (mbaena@lcc.uma.es)
+ * @version $Revision: 7 $
  */
-public class DDM extends AbstractChangeDetector {
+public class GeometricMovingAverageDM extends AbstractChangeDetector {
 
     private static final long serialVersionUID = -3518369648142099719L;
 
-    //private static final int DDM_MINNUMINST = 30;
     public IntOption minNumInstancesOption = new IntOption(
             "minNumInstances",
             'n',
             "The minimum number of instances before permitting detecting change.",
             30, 0, Integer.MAX_VALUE);
-    private int m_n;
 
-    private double m_p;
+    public FloatOption lambdaOption = new FloatOption("lambda", 'l',
+            "Threshold parameter of the Geometric Moving Average Test", 1, 0.0, Float.MAX_VALUE);
 
-    private double m_s;
+    public FloatOption alphaOption = new FloatOption("alpha", 'a',
+            "Alpha parameter of the Geometric Moving Average Test", .99, 0.0, 1.0);
 
-    private double m_psmin;
+    private double m_n;
 
-    private double m_pmin;
+    private double sum;
 
-    private double m_smin;
+    private double x_mean;
+                                                                                            
+    private double alpha;
 
-    public DDM() {
+    private double delta;
+
+    private double lambda;
+
+    public GeometricMovingAverageDM() {
         resetLearning();
     }
 
     @Override
     public void resetLearning() {
-        m_n = 1;
-        m_p = 1;
-        m_s = 0;
-        m_psmin = Double.MAX_VALUE;
-        m_pmin = Double.MAX_VALUE;
-        m_smin = Double.MAX_VALUE;
+        m_n = 1.0;
+        x_mean = 0.0;
+        sum = 0.0;
+        alpha = this.alphaOption.getValue();
+        lambda = this.lambdaOption.getValue();
     }
 
     @Override
-    public void input(double prediction) {
-        // prediction must be 1 or 0
+    public void input(double x) {
         // It monitors the error rate
         if (this.isChangeDetected == true) {
             resetLearning();
         }
-        m_p = m_p + (prediction - m_p) / (double) m_n;
-        m_s = Math.sqrt(m_p * (1 - m_p) / (double) m_n);
+
+        x_mean = x_mean + (x - x_mean) / m_n;
+        sum = alpha * sum + ( 1.0- alpha) * (x - x_mean);
+
 
         m_n++;
 
         // System.out.print(prediction + " " + m_n + " " + (m_p+m_s) + " ");
-        this.estimation = m_p;
+        this.estimation = x_mean;
         this.isChangeDetected = false;
         this.isWarningZone = false;
         this.delay = 0;
@@ -89,23 +94,9 @@ public class DDM extends AbstractChangeDetector {
             return;
         }
 
-        if (m_p + m_s <= m_psmin) {
-            m_pmin = m_p;
-            m_smin = m_s;
-            m_psmin = m_p + m_s;
-        }
-
-        if (m_n > this.minNumInstancesOption.getValue() && m_p + m_s > m_pmin + 3 * m_smin) {
-            //System.out.println(m_p + ",D");
+        if (sum > this.lambda) {
             this.isChangeDetected = true;
-            //resetLearning();
-        } else if (m_p + m_s > m_pmin + 2 * m_smin) {
-            //System.out.println(m_p + ",W");
-            this.isWarningZone = true;
-        } else {
-            this.isWarningZone = false;
-            //System.out.println(m_p + ",N");
-        }
+        } 
     }
 
     @Override

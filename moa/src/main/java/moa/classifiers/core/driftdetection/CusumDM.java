@@ -16,7 +16,7 @@
  *    You should have received a copy of the GNU General Public License
  *    along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package moa.drift;
+package moa.classifiers.core.driftdetection;
 
 import moa.core.ObjectRepository;
 import moa.options.FloatOption;
@@ -24,13 +24,13 @@ import moa.options.IntOption;
 import moa.tasks.TaskMonitor;
 
 /**
- * Drift detection method based in Page Hinkley Test.
+ * Drift detection method based in Cusum
  *
  *
  * @author Manuel Baena (mbaena@lcc.uma.es)
  * @version $Revision: 7 $
  */
-public class PageHinkleyDM extends AbstractChangeDetector {
+public class CusumDM extends AbstractChangeDetector {
 
     private static final long serialVersionUID = -3518369648142099719L;
 
@@ -41,13 +41,10 @@ public class PageHinkleyDM extends AbstractChangeDetector {
             30, 0, Integer.MAX_VALUE);
 
     public FloatOption deltaOption = new FloatOption("delta", 'd',
-            "Delta parameter of the Page Hinkley Test", 0.005, 0.0, 1.0);
+            "Delta parameter of the Cusum Test", 0.005, 0.0, 1.0);
 
     public FloatOption lambdaOption = new FloatOption("lambda", 'l',
-            "Lambda parameter of the Page Hinkley Test", 50, 0.0, Float.MAX_VALUE);
-
-    public FloatOption alphaOption = new FloatOption("alpha", 'a',
-            "Alpha parameter of the Page Hinkley Test", 1 - 0.0001, 0.0, 1.0);
+            "Threshold parameter of the Cusum Test", 50, 0.0, Float.MAX_VALUE);
 
     private int m_n;
 
@@ -61,7 +58,7 @@ public class PageHinkleyDM extends AbstractChangeDetector {
 
     private double lambda;
 
-    public PageHinkleyDM() {
+    public CusumDM() {
         resetLearning();
     }
 
@@ -71,7 +68,6 @@ public class PageHinkleyDM extends AbstractChangeDetector {
         x_mean = 0.0;
         sum = 0.0;
         delta = this.deltaOption.getValue();
-        alpha = this.alphaOption.getValue();
         lambda = this.lambdaOption.getValue();
     }
 
@@ -83,7 +79,10 @@ public class PageHinkleyDM extends AbstractChangeDetector {
         }
 
         x_mean = x_mean + (x - x_mean) / (double) m_n;
-        sum = this.alpha * sum + (x - x_mean - this.delta);
+        sum = Math.max(0, sum + x - x_mean - this.delta);
+
+        
+
 
         m_n++;
 
