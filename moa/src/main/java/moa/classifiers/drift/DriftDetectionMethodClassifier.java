@@ -24,7 +24,7 @@ import moa.classifiers.AbstractClassifier;
 import moa.classifiers.Classifier;
 import moa.classifiers.meta.WEKAClassifier;
 import moa.core.Measurement;
-import moa.drift.ChangeDetector;
+import moa.classifiers.core.driftdetection.ChangeDetector;
 import moa.options.ClassOption;
 import weka.core.Instance;
 import weka.core.Utils;
@@ -56,7 +56,7 @@ public class DriftDetectionMethodClassifier extends AbstractClassifier {
             "Classifier to train.", Classifier.class, "bayes.NaiveBayes");
     
     public ClassOption driftDetectionMethodOption = new ClassOption("driftDetectionMethod", 'd',
-             "Drift detection method to use.", ChangeDetector.class, "moa.drift.DDM");
+             "Drift detection method to use.", ChangeDetector.class, "DDM");
 
     protected Classifier classifier;
 
