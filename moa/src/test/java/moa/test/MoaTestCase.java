@@ -30,7 +30,7 @@ import junit.textui.TestRunner;
  * Ancestor for all test cases.
  * <p/>
  * Any regression test can be skipped as follows: <br/>
- *   <code>-Dadams.test.noregression=true</code>
+ *   <code>-Dmoa.test.noregression=true</code>
  *
  * @author  fracpete (fracpete at waikato dot ac dot nz)
  * @version $Revision: 8349 $

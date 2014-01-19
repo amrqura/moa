@@ -14,23 +14,24 @@
  */
 
 /**
- * NaiveBayesTest.java
+ * LimAttHoeffdingTreeTest.java
  * Copyright (C) 2013 University of Waikato, Hamilton, New Zealand
  */
-package moa.classifiers.bayes;
+package moa.classifiers.trees;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import moa.classifiers.AbstractMultipleClassifierTestCase;
 import moa.classifiers.Classifier;
+import static moa.test.MoaTestCase.runTest;
 
 /**
- * Tests the NaiveBayes classifier.
+ * Tests the LimAttHoeffdingTree classifier.
  * 
  * @author  fracpete (fracpete at waikato dot ac dot nz)
  * @version $Revision$
  */
-public class NaiveBayesTest
+public class LimAttHoeffdingTreeTest
   extends AbstractMultipleClassifierTestCase {
 
   /**
@@ -38,7 +39,7 @@ public class NaiveBayesTest
    *
    * @param name 	the name of the test
    */
-  public NaiveBayesTest(String name) {
+  public LimAttHoeffdingTreeTest(String name) {
     super(name);
     this.setNumberTests(1);
   }
@@ -50,9 +51,11 @@ public class NaiveBayesTest
    */
   @Override
   protected Classifier[] getRegressionClassifierSetups() {
-    return new Classifier[]{
-	new NaiveBayes(),
-    };
+    LimAttHoeffdingTree[]	result;
+    result    = new LimAttHoeffdingTree[1];
+    result[0] = new LimAttHoeffdingTree();  
+    result[0].setlistAttributes(new int[]{1,2});
+    return result;
   }
   
   /**
@@ -61,7 +64,7 @@ public class NaiveBayesTest
    * @return		the test suite
    */
   public static Test suite() {
-    return new TestSuite(NaiveBayesTest.class);
+    return new TestSuite(LimAttHoeffdingTreeTest.class);
   }
 
   /**
@@ -73,3 +76,4 @@ public class NaiveBayesTest
     runTest(suite());
   }
 }
+

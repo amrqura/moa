@@ -14,31 +14,32 @@
  */
 
 /**
- * NaiveBayesTest.java
+ * FIMTDDTest.java
  * Copyright (C) 2013 University of Waikato, Hamilton, New Zealand
  */
-package moa.classifiers.bayes;
+package moa.classifiers.trees;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
-import moa.classifiers.AbstractMultipleClassifierTestCase;
+import moa.classifiers.AbstractMultipleRegressorTestCase;
 import moa.classifiers.Classifier;
+import static moa.test.MoaTestCase.runTest;
 
 /**
- * Tests the NaiveBayes classifier.
+ * Tests the FIMTDD classifier.
  * 
  * @author  fracpete (fracpete at waikato dot ac dot nz)
  * @version $Revision$
  */
-public class NaiveBayesTest
-  extends AbstractMultipleClassifierTestCase {
+public class FIMTDDTest
+  extends AbstractMultipleRegressorTestCase {  
 
   /**
    * Constructs the test case. Called by subclasses.
    *
    * @param name 	the name of the test
    */
-  public NaiveBayesTest(String name) {
+  public FIMTDDTest(String name) {
     super(name);
     this.setNumberTests(1);
   }
@@ -51,7 +52,7 @@ public class NaiveBayesTest
   @Override
   protected Classifier[] getRegressionClassifierSetups() {
     return new Classifier[]{
-	new NaiveBayes(),
+	new FIMTDD(),
     };
   }
   
@@ -61,7 +62,7 @@ public class NaiveBayesTest
    * @return		the test suite
    */
   public static Test suite() {
-    return new TestSuite(NaiveBayesTest.class);
+    return new TestSuite(FIMTDDTest.class);
   }
 
   /**
@@ -73,3 +74,4 @@ public class NaiveBayesTest
     runTest(suite());
   }
 }
+
