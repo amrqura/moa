@@ -13,12 +13,12 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 /**
- * AbstractMultipleClassifierTestCase.java Copyright (C) 2013 University of Waikato, Hamilton, New
+ * AbstractMultipleRegressorTestCase.java Copyright (C) 2013 University of Waikato, Hamilton, New
  * Zealand
  */
 package moa.classifiers;
 
-import moa.evaluation.BasicClassificationPerformanceEvaluator;
+import moa.evaluation.BasicRegressionPerformanceEvaluator;
 import moa.evaluation.ClassificationPerformanceEvaluator;
 
 /**
@@ -28,7 +28,7 @@ import moa.evaluation.ClassificationPerformanceEvaluator;
  * @author fracpete (fracpete at waikato dot ac dot nz)
  * @version $Revision$
  */
-public abstract class AbstractMultipleClassifierTestCase
+public abstract class AbstractMultipleRegressorTestCase
         extends AbstractClassifierTestCase {
 
     protected int numberTests = 1;
@@ -38,7 +38,7 @@ public abstract class AbstractMultipleClassifierTestCase
      *
      * @param name the name of the test
      */
-    public AbstractMultipleClassifierTestCase(String name) {
+    public AbstractMultipleRegressorTestCase(String name) {
         super(name);
     }
 
@@ -62,7 +62,7 @@ public abstract class AbstractMultipleClassifierTestCase
     protected void setUp() throws Exception {
         super.setUp();
 
-        m_TestHelper.copyResourceToTmp("classification.arff");
+        m_TestHelper.copyResourceToTmp("regression.arff");
     }
 
     /**
@@ -72,7 +72,7 @@ public abstract class AbstractMultipleClassifierTestCase
      */
     @Override
     protected void tearDown() throws Exception {
-        m_TestHelper.deleteFileFromTmp("classification.arff");
+        m_TestHelper.deleteFileFromTmp("regression.arff");
 
         super.tearDown();
     }
@@ -85,7 +85,7 @@ public abstract class AbstractMultipleClassifierTestCase
      */
     @Override
     protected String[] getRegressionInputFiles() {
-        String value = "classification.arff";
+        String value = "regression.arff";
         String[] ret = new String[this.numberTests];
         for (int i = 0; i < this.numberTests; i++) {
             ret[i] = value;
@@ -100,7 +100,7 @@ public abstract class AbstractMultipleClassifierTestCase
      */
     @Override
     protected int[] getRegressionInputClassIndex() {
-        int value = 10;
+        int value = 8;
         int[] ret = new int[this.numberTests];
         for (int i = 0; i < this.numberTests; i++) {
             ret[i] = value;
@@ -116,7 +116,7 @@ public abstract class AbstractMultipleClassifierTestCase
      */
     @Override
     protected int[][] getRegressionInspectionPoints() {
-        int[] value = new int[]{10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000};
+        int[] value = new int[]{100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
         int[][] ret = new int[this.numberTests][value.length];
         for (int i = 0; i < this.numberTests; i++) {
             ret[i] = value.clone();
@@ -139,7 +139,7 @@ public abstract class AbstractMultipleClassifierTestCase
      */
     @Override
     protected ClassificationPerformanceEvaluator[] getRegressionEvaluatorSetups() {
-        ClassificationPerformanceEvaluator value = new BasicClassificationPerformanceEvaluator();
+        ClassificationPerformanceEvaluator value = new BasicRegressionPerformanceEvaluator();
         ClassificationPerformanceEvaluator[] ret = new ClassificationPerformanceEvaluator[this.numberTests];
         for (int i = 0; i < this.numberTests; i++) {
             ret[i] = (ClassificationPerformanceEvaluator) value.copy();

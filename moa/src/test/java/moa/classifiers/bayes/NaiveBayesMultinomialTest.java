@@ -23,8 +23,6 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 import moa.classifiers.AbstractMultipleClassifierTestCase;
 import moa.classifiers.Classifier;
-import moa.evaluation.BasicClassificationPerformanceEvaluator;
-import moa.evaluation.ClassificationPerformanceEvaluator;
 
 /**
  * Tests the NaiveBayesMultinomial classifier.
@@ -41,7 +39,8 @@ public class NaiveBayesMultinomialTest
    * @param name 	the name of the test
    */
   public NaiveBayesMultinomialTest(String name) {
-    super(name, 1);
+    super(name);
+    this.setNumberTests(1);
   }
   
   /**
@@ -50,7 +49,7 @@ public class NaiveBayesMultinomialTest
    * @return		the setups
    */
   @Override
-  protected Classifier[] getRegressionClassifierSetups() {
+  protected Classifier[] getRegressionClassifierSetups() {  
     return new Classifier[]{
 	new NaiveBayesMultinomial(),
     };

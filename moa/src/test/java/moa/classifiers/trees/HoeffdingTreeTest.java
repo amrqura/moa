@@ -39,7 +39,8 @@ public class HoeffdingTreeTest
    * @param name 	the name of the test
    */
   public HoeffdingTreeTest(String name) {
-    super(name, 2);
+    super(name);
+    this.setNumberTests(2);
   }
 
   
@@ -51,7 +52,6 @@ public class HoeffdingTreeTest
   @Override
   protected Classifier[] getRegressionClassifierSetups() {
     HoeffdingTree[]	result;
-    
     result    = new HoeffdingTree[2];
     result[0] = new HoeffdingTree();
     result[1] = new HoeffdingTree();

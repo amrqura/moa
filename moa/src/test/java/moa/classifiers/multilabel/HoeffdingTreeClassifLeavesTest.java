@@ -14,23 +14,24 @@
  */
 
 /**
- * NaiveBayesTest.java
+ * HoeffdingTreeClassifLeavesTest.java
  * Copyright (C) 2013 University of Waikato, Hamilton, New Zealand
  */
-package moa.classifiers.bayes;
+package moa.classifiers.multilabel;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import moa.classifiers.AbstractMultipleClassifierTestCase;
 import moa.classifiers.Classifier;
+import static moa.test.MoaTestCase.runTest;
 
 /**
- * Tests the NaiveBayes classifier.
+ * Tests the HoeffdingTreeClassifLeaves classifier.
  * 
  * @author  fracpete (fracpete at waikato dot ac dot nz)
  * @version $Revision$
  */
-public class NaiveBayesTest
+public class HoeffdingTreeClassifLeavesTest
   extends AbstractMultipleClassifierTestCase {
 
   /**
@@ -38,7 +39,7 @@ public class NaiveBayesTest
    *
    * @param name 	the name of the test
    */
-  public NaiveBayesTest(String name) {
+  public HoeffdingTreeClassifLeavesTest(String name) {
     super(name);
     this.setNumberTests(1);
   }
@@ -51,7 +52,7 @@ public class NaiveBayesTest
   @Override
   protected Classifier[] getRegressionClassifierSetups() {
     return new Classifier[]{
-	new NaiveBayes(),
+	new HoeffdingTreeClassifLeaves(),
     };
   }
   
@@ -61,7 +62,7 @@ public class NaiveBayesTest
    * @return		the test suite
    */
   public static Test suite() {
-    return new TestSuite(NaiveBayesTest.class);
+    return new TestSuite(HoeffdingTreeClassifLeavesTest.class);
   }
 
   /**
@@ -73,3 +74,4 @@ public class NaiveBayesTest
     runTest(suite());
   }
 }
+
