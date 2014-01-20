@@ -19,6 +19,7 @@
  */
 package moa.classifiers;
 
+import moa.core.InstancesHeader;
 import moa.core.Measurement;
 import moa.evaluation.ClassificationPerformanceEvaluator;
 import moa.test.AbstractTestHelper;
@@ -313,6 +314,7 @@ public abstract class AbstractClassifierTestCase
       assertNotNull("Could not load data for regression test from " + input[i], data);
 
       current = setups[i].copy();
+      current.setModelContext(new InstancesHeader(data));
       assertNotNull("Failed to create copy of algorithm: " + MOAUtils.toCommandLine(setups[i]), current);
 
       processed = inspect(data, points[i], evals[i], current);

@@ -52,9 +52,12 @@ public class OzaBagASHTTest
    */
   @Override
   protected Classifier[] getRegressionClassifierSetups() {
-    return new Classifier[]{
-	new OzaBagASHT(),
-    };
+    OzaBagASHT[]	result;
+    result    = new OzaBagASHT[1];
+    result[0] = new OzaBagASHT();
+    result[0].baseLearnerOption.setValueViaCLIString("trees.ASHoeffdingTree");
+    return result;
+    
   }
   
   /**
