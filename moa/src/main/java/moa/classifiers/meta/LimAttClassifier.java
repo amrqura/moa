@@ -463,7 +463,7 @@ public class LimAttClassifier extends AbstractClassifier {
     }
 
     //Perceptron
-    public FloatOption learningRatioOption = new FloatOption("learningRatio", 'r', "Learning ratio", 1);
+    public FloatOption learningRatioOption = new FloatOption("learningRatio", 'e', "Learning ratio", 1);
 
     public FloatOption penaltyFactorOption = new FloatOption("lambda", 'p', "Lambda", 0.0);
 
