@@ -189,16 +189,15 @@ public class EvaluatePrequential extends MainTask {
                 && ((maxSeconds < 0) || (secondsElapsed < maxSeconds))) {
             Instance trainInst = stream.nextInstance();
             Instance testInst = (Instance) trainInst.copy();
-            int trueClass = (int) trainInst.classValue();
-            //testInst.setClassMissing();
-            double[] prediction = learner.getVotesForInstance(testInst);
-            // Output prediction
-            if (outputPredictionFile != null) {
-                outputPredictionResultStream.println(Utils.maxIndex(prediction) + "," + trueClass);
+            if (testInst.classIsMissing() == false){
+                // Added for semisupervised setting: test only if we have the label
+                double[] prediction = learner.getVotesForInstance(testInst);
+                // Output prediction
+                if (outputPredictionFile != null) {
+                    outputPredictionResultStream.println(Utils.maxIndex(prediction) + "," + testInst.classValue());
+                }
+                evaluator.addResult(testInst, prediction);
             }
-
-            //evaluator.addClassificationAttempt(trueClass, prediction, testInst.weight());
-            evaluator.addResult(testInst, prediction);
             learner.trainOnInstance(trainInst);
             instancesProcessed++;
             if (instancesProcessed % this.sampleFrequencyOption.getValue() == 0
