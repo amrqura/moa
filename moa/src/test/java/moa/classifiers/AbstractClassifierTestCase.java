@@ -314,6 +314,7 @@ public abstract class AbstractClassifierTestCase
       assertNotNull("Could not load data for regression test from " + input[i], data);
 
       current = setups[i].copy();
+      current.prepareForUse();
       current.setModelContext(new InstancesHeader(data));
       assertNotNull("Failed to create copy of algorithm: " + MOAUtils.toCommandLine(setups[i]), current);
 
