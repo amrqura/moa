@@ -43,7 +43,7 @@ public class Perceptron extends AbstractClassifier {
         return "Perceptron classifier: Single perceptron classifier.";
     }
 
-    public FloatOption learningRatioOption = new FloatOption("learningRatio", 'r', "Learning ratio", 1);
+    public FloatOption learningRatioOption = new FloatOption("learningRatio", 'l', "Learning ratio", 1);
 
     protected double[][] weightAttribute;
 
@@ -71,7 +71,7 @@ public class Perceptron extends AbstractClassifier {
             this.weightAttribute = new double[inst.numClasses()][inst.numAttributes()];
             for (int i = 0; i < inst.numClasses(); i++) {
                 for (int j = 0; j < inst.numAttributes(); j++) {
-                    weightAttribute[i][j] = 0.2 * Math.random() - 0.1;
+                    weightAttribute[i][j] = 0.2 * this.classifierRandom.nextDouble()- 0.1;
                 }
             }
         }
@@ -149,6 +149,6 @@ public class Perceptron extends AbstractClassifier {
 
     @Override
     public boolean isRandomizable() {
-        return false;
+        return true;
     }
 }
