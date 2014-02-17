@@ -31,7 +31,7 @@ import moa.options.IntOption;
  * This classifier learn ordered and unordered rule set from data stream with naive Bayes learners.
  * <p> This algorithm also does the detection of anomalies.
  * 
- * <p>Learning Decision Rules from Data Streams, IJCAI 2011, J. Gama,  P. Kosina </p>
+ * <p>Learning Decision RuleClassifications from Data Streams, IJCAI 2011, J. Gama,  P. Kosina </p>
  * 
  * <p>Parameters:</p>
  * <ul>
