@@ -4,112 +4,122 @@ moa.classifiers.rules.AMRules
 Index
   100
 Votes
-  0: 55948.38383838
+  0: 55388.9
 Measurements
   classified instances: 99
-  mean absolute error: 34628.12606101
-  root mean squared error: 65078.43264825
+  mean absolute error: 34741.07876919
+  root mean squared error: 65301.3716812
 Model measurements
   model training instances: 99
+  rules (number): 1
 
 Index
   200
 Votes
-  0: 47263.67336683
+  0: 1701314.2
 Measurements
   classified instances: 199
-  mean absolute error: 31761.42175101
-  root mean squared error: 52002.95041982
+  mean absolute error: 40030.28971323
+  root mean squared error: 130348.24556858
 Model measurements
   model training instances: 199
+  rules (number): 2
 
 Index
   300
 Votes
-  0: 50376.65656566
+  0: 134251.66666667
 Measurements
   classified instances: 299
-  mean absolute error: 31244.11775292
-  root mean squared error: 50582.10890601
+  mean absolute error: 107062.91032618
+  root mean squared error: 225515.51427479
 Model measurements
   model training instances: 299
+  rules (number): 2
 
 Index
   400
 Votes
-  0: 54218.49246231
+  0: -16437.90628269
 Measurements
   classified instances: 399
-  mean absolute error: 33261.16816304
-  root mean squared error: 53757.25849474
+  mean absolute error: 89883.98469546
+  root mean squared error: 197320.97500887
 Model measurements
   model training instances: 399
+  rules (number): 2
 
 Index
   500
 Votes
-  0: 36402.58108108
+  0: 48817.9959035
 Measurements
   classified instances: 499
-  mean absolute error: 32098.89133905
-  root mean squared error: 51262.14905706
+  mean absolute error: 76541.8859186
+  root mean squared error: 177159.43954731
 Model measurements
   model training instances: 499
+  rules (number): 2
 
 Index
   600
 Votes
-  0: 37201.76923077
+  0: 60108.95454545
 Measurements
   classified instances: 599
-  mean absolute error: 30551.53122804
-  root mean squared error: 50724.19439868
+  mean absolute error: 69116.34664057
+  root mean squared error: 163351.62537179
 Model measurements
   model training instances: 599
+  rules (number): 1
 
 Index
   700
 Votes
-  0: 33792.71428571
+  0: 52936.03012048
 Measurements
   classified instances: 699
-  mean absolute error: 29160.04228203
-  root mean squared error: 48141.37695395
+  mean absolute error: 63725.96700897
+  root mean squared error: 151988.91469846
 Model measurements
   model training instances: 699
+  rules (number): 1
 
 Index
   800
 Votes
-  0: 32255.70588235
+  0: 192155.41176471
 Measurements
   classified instances: 799
-  mean absolute error: 28565.9219617
-  root mean squared error: 46917.61536144
+  mean absolute error: 89995.2960506
+  root mean squared error: 211127.56238903
 Model measurements
   model training instances: 799
+  rules (number): 2
 
 Index
   900
 Votes
-  0: 86036.96703297
+  0: 1413.59217178
 Measurements
   classified instances: 899
-  mean absolute error: 27519.9414388
-  root mean squared error: 45137.56507419
+  mean absolute error: 86469.9952211
+  root mean squared error: 200828.72005218
 Model measurements
   model training instances: 899
+  rules (number): 2
 
 Index
   1000
 Votes
-  0: 25057.70967742
+  0: 48260.875
 Measurements
   classified instances: 999
-  mean absolute error: 27103.97283673
-  root mean squared error: 44263.60620929
+  mean absolute error: 81564.6891631
+  root mean squared error: 191634.42111655
 Model measurements
   model training instances: 999
+  rules (number): 2
 
 
 
