@@ -130,6 +130,6 @@ public class BasicRegressionPerformanceEvaluator extends AbstractMOAObject
         //double targetSquareError = getTargetSquareError();
         //return targetSquareError > 0 ? getSquareError()/targetSquareError : 0.0;
     return Math.sqrt(this.squareTargetError> 0 ?
-                this.squareTargetError/this.squareTargetError : 0.0);
+                this.squareError/this.squareTargetError : 0.0);
     }
 }
