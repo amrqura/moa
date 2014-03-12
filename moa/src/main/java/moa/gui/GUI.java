@@ -85,7 +85,7 @@ public class GUI extends JPanel {
 
                     try {
 
-						javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
                     } catch (Exception e) {
                     }
 
