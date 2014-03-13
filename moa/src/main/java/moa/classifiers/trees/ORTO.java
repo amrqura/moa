@@ -190,7 +190,7 @@ public class ORTO extends AbstractClassifier implements Regressor{
     
     public FlagOption removePoorAttsOption = new FlagOption(
             "removePoorAtts",
-            'r',
+            'p',
             "Disable poor attributes.");
     
     public MultiChoiceOption OptionNodeAggregationOption = new MultiChoiceOption(
@@ -1093,7 +1093,7 @@ public class ORTO extends AbstractClassifier implements Regressor{
                 this.attributeStatistics = new DoubleVector();
                 this.squaredAttributeStatistics = new DoubleVector();
                 for (int j = 0; j < inst.numAttributes(); j++) {
-                    weightAttribute[j] = 2 * Math.random() - 1;
+                    weightAttribute[j] = 2 * ft.classifierRandom.nextDouble() - 1;
                 }
             }
             
@@ -1191,7 +1191,7 @@ public class ORTO extends AbstractClassifier implements Regressor{
     }
     
     public boolean isRandomizable() {
-        return false;
+        return true;
     }
 
     protected void checkRoot() {

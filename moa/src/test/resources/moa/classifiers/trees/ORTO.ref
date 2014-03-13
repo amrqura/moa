@@ -7,10 +7,10 @@ Votes
   0: -9.223372036854776E15
 Measurements
   classified instances: 99
-  mean absolute error: 7.898179923297061E15
-  root mean squared error: 8.49350368513852E15
-  relative mean absolute error: 2.2704487715146057E11
-  relative root mean squared error: 1.3065558885293338E11
+  mean absolute error: 7.898091401129945E15
+  root mean squared error: 8.493483841636389E15
+  relative mean absolute error: 2.2704233245068735E11
+  relative root mean squared error: 1.3065528360028947E11
 Model measurements
   model training instances: 99
   number of subtrees: 1
@@ -24,10 +24,10 @@ Votes
   0: -9.223372036854776E15
 Measurements
   classified instances: 199
-  mean absolute error: 8.564105608521343E15
-  root mean squared error: 8.867783725767772E15
-  relative mean absolute error: 2.6836467055377908E11
-  relative root mean squared error: 1.7056962163982227E11
+  mean absolute error: 8.564061569855291E15
+  root mean squared error: 8.867774270540954E15
+  relative mean absolute error: 2.6836329055887396E11
+  relative root mean squared error: 1.705694397708784E11
 Model measurements
   model training instances: 199
   number of subtrees: 1
@@ -41,10 +41,10 @@ Votes
   0: 9.223372036854776E15
 Measurements
   classified instances: 299
-  mean absolute error: 8.784596052794276E15
-  root mean squared error: 8.988275385318326E15
-  relative mean absolute error: 2.8579230896226807E11
-  relative root mean squared error: 1.786641287674974E11
+  mean absolute error: 8.784566742779079E15
+  root mean squared error: 8.98826917673548E15
+  relative mean absolute error: 2.85791355409382E11
+  relative root mean squared error: 1.7866400535660962E11
 Model measurements
   model training instances: 299
   number of subtrees: 1
@@ -58,10 +58,10 @@ Votes
   0: -9.223372036854776E15
 Measurements
   classified instances: 399
-  mean absolute error: 8.894564971102513E15
-  root mean squared error: 9.047770519674178E15
-  relative mean absolute error: 2.7362932728140033E11
-  relative root mean squared error: 1.6873936366618976E11
+  mean absolute error: 8.894543006955787E15
+  root mean squared error: 9.047765897721154E15
+  relative mean absolute error: 2.736286515839702E11
+  relative root mean squared error: 1.68739277467561E11
 Model measurements
   model training instances: 399
   number of subtrees: 1
@@ -75,10 +75,10 @@ Votes
   0: -9.223372036854776E15
 Measurements
   classified instances: 499
-  mean absolute error: 8.935280713438583E15
-  root mean squared error: 9.067246310121752E15
-  relative mean absolute error: 2.804262915315912E11
-  relative root mean squared error: 1.7663918312128058E11
+  mean absolute error: 8.935265504708743E15
+  root mean squared error: 9.067244469218236E15
+  relative mean absolute error: 2.8042581421836017E11
+  relative root mean squared error: 1.7663914725860718E11
 Model measurements
   model training instances: 499
   number of subtrees: 1
@@ -92,10 +92,10 @@ Votes
   0: -9.223372036854776E15
 Measurements
   classified instances: 599
-  mean absolute error: 8.965166628813378E15
-  root mean squared error: 9.08047953673051E15
-  relative mean absolute error: 2.824031555767294E11
-  relative root mean squared error: 1.7319410582666336E11
+  mean absolute error: 8.965147368243791E15
+  root mean squared error: 9.080475275300308E15
+  relative mean absolute error: 2.824025488679135E11
+  relative root mean squared error: 1.731940245474104E11
 Model measurements
   model training instances: 599
   number of subtrees: 1
@@ -109,10 +109,10 @@ Votes
   0: -9.223372036854776E15
 Measurements
   classified instances: 699
-  mean absolute error: 8.994338247300084E15
-  root mean squared error: 9.095502787942486E15
-  relative mean absolute error: 2.859973534985956E11
-  relative root mean squared error: 1.7903992494086337E11
+  mean absolute error: 8.994329128243552E15
+  root mean squared error: 9.095502225063612E15
+  relative mean absolute error: 2.8599706353551404E11
+  relative root mean squared error: 1.7903991386090506E11
 Model measurements
   model training instances: 699
   number of subtrees: 1
@@ -126,10 +126,10 @@ Votes
   0: -9.223372036854776E15
 Measurements
   classified instances: 799
-  mean absolute error: 9.02300330231843E15
-  root mean squared error: 9.111604689761466E15
-  relative mean absolute error: 2.863017291235234E11
-  relative root mean squared error: 1.810509763553989E11
+  mean absolute error: 9.0229953245706E15
+  root mean squared error: 9.11160419820073E15
+  relative mean absolute error: 2.863014759879629E11
+  relative root mean squared error: 1.810509665879041E11
 Model measurements
   model training instances: 799
   number of subtrees: 1
@@ -143,10 +143,10 @@ Votes
   0: 9.223372036854776E15
 Measurements
   classified instances: 899
-  mean absolute error: 9.038348978667892E15
-  root mean squared error: 9.119460126361878E15
-  relative mean absolute error: 2.917644786959977E11
-  relative root mean squared error: 1.8683100154677167E11
+  mean absolute error: 9.038330375793132E15
+  root mean squared error: 9.119455931540714E15
+  relative mean absolute error: 2.917638781816704E11
+  relative root mean squared error: 1.8683091560718442E11
 Model measurements
   model training instances: 899
   number of subtrees: 1
@@ -160,10 +160,10 @@ Votes
   0: 9.223372036854776E15
 Measurements
   classified instances: 999
-  mean absolute error: 9.054353447727198E15
-  root mean squared error: 9.12771903508344E15
-  relative mean absolute error: 2.9150505199124115E11
-  relative root mean squared error: 1.880005927185084E11
+  mean absolute error: 9.054250603299202E15
+  root mean squared error: 9.127652376626254E15
+  relative mean absolute error: 2.915017409132605E11
+  relative root mean squared error: 1.87999219776439E11
 Model measurements
   model training instances: 999
   number of subtrees: 1
