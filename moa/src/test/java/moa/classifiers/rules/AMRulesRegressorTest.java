@@ -26,12 +26,12 @@ import moa.classifiers.Classifier;
 import static moa.test.MoaTestCase.runTest;
 
 /**
- * Tests the AMRules classifier.
+ * Tests the AMRulesRegressor classifier.
  * 
  * @author  fracpete (fracpete at waikato dot ac dot nz)
  * @version $Revision$
  */
-public class AMRulesTest
+public class AMRulesRegressorTest
   extends AbstractMultipleRegressorTestCase {
 
   /**
@@ -39,7 +39,7 @@ public class AMRulesTest
    *
    * @param name 	the name of the test
    */
-  public AMRulesTest(String name) {
+  public AMRulesRegressorTest(String name) {
     super(name);
     this.setNumberTests(1);
   }
@@ -52,7 +52,7 @@ public class AMRulesTest
   @Override
   protected Classifier[] getRegressionClassifierSetups() {
     return new Classifier[]{
-	new AMRules(),
+	new AMRulesRegressor(),
     };
   }
   
@@ -62,7 +62,7 @@ public class AMRulesTest
    * @return		the test suite
    */
   public static Test suite() {
-    return new TestSuite(AMRulesTest.class);
+    return new TestSuite(AMRulesRegressorTest.class);
   }
 
   /**

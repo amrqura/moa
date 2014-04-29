@@ -17,7 +17,7 @@
  *    
  *    
  */
-package moa.classifiers.rules;
+package moa.classifiers.rules.core;
 
 import weka.core.Instance;
 

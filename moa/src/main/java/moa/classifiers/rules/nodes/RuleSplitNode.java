@@ -17,9 +17,10 @@
  *    
  *    
  */
-package moa.classifiers.rules;
+package moa.classifiers.rules.nodes;
 
 import moa.classifiers.core.conditionaltests.InstanceConditionalTest;
+import moa.classifiers.rules.core.Predicate;
 import moa.classifiers.trees.HoeffdingTree.SplitNode;
 import weka.core.Instance;
 
