@@ -17,9 +17,10 @@
  *    
  *    
  */
-package moa.classifiers.rules;
+package moa.classifiers.rules.core.conditionaltests;
 
 import moa.classifiers.core.conditionaltests.InstanceConditionalBinaryTest;
+import moa.classifiers.rules.core.Predicate;
 import moa.core.InstancesHeader;
 import weka.core.Instance;
 
@@ -115,8 +116,7 @@ public class NumericAttributeBinaryRulePredicate extends InstanceConditionalBina
             return "x" + this.attIndex
                     + ' '
                     + compareChar
-                    //+ (branch == equalsBranch ? "= " : " ")
-                    + ' ' // AC 20-01-2014
+                    + ' ' 
                     + this.attValue;
         }
         throw new IndexOutOfBoundsException();

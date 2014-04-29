@@ -17,9 +17,10 @@
  *    
  *    
  */
-package moa.classifiers.rules;
+package moa.classifiers.rules.core.conditionaltests;
 
 import moa.classifiers.core.conditionaltests.NominalAttributeBinaryTest;
+import moa.classifiers.rules.core.Predicate;
 import weka.core.Instance;
 
 /**
