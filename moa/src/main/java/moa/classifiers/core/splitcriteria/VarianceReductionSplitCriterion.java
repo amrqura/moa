@@ -1,5 +1,5 @@
 /*
- *    FIMTDDNumericAttributeClassObserver.java
+ *    VarianceReductionSplitCriterion.java
  *    Copyright (C) 2013 University of Porto, Portugal
  *    @author Katie de Lange, E. Almeida, J. Gama
  *
