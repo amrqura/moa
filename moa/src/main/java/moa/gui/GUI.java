@@ -24,6 +24,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import moa.DoTask;
 
@@ -84,9 +85,13 @@ public class GUI extends JPanel {
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
                     try {
-
-			javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                     } catch (Exception e) {
+                        try {
+                            javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+                        } catch (Exception ex) {
+                        }
+                    
                     }
 
                     GUI gui = new GUI();
