@@ -64,7 +64,7 @@ public class DACC extends AbstractClassifier {
     /**
      * Ensemble size
      */
-    public FloatOption memberCountOption = new FloatOption("memberCount", 'n', "The maximum number of classifier in an ensemble.", 20, 1, Integer.MAX_VALUE);
+    public FloatOption memberCountOption = new FloatOption("ensembleSize", 'n', "The maximum number of classifiers in an ensemble.", 20, 1, Integer.MAX_VALUE);
     /**
      * Maturity age of classifiers
      */
@@ -73,7 +73,7 @@ public class DACC extends AbstractClassifier {
     /**
      * Size of the evaluation window for weights computing
      */
-    public FloatOption evaluationSizeOption = new FloatOption("eval", 'e',
+    public FloatOption evaluationSizeOption = new FloatOption("evalSize", 'e',
             "The size of the evaluation window.", 20, 1, 1000);
     /**
      * Combination functions: MAX and WVD (MAX leads to a faster reactivity to the change, WVD is more robust to noise) 
@@ -437,8 +437,13 @@ public class DACC extends AbstractClassifier {
 	    }
 
 	    @Override
-	    public int compareTo(Pair other){
-	        return this.val > other.val?1:0;
+	    public int compareTo(Pair other){ 
+	    	if (this.val - other.val > 0 )
+		        	return 1;    
+	    	else
+	    		if (this.val == other.val)
+		        		return 0;    
+	    	return -1;
 	    }
 	    
 	    public double getValue(){
