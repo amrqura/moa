@@ -29,8 +29,6 @@ import moa.options.AbstractOptionHandler;
 public abstract class AbstractChangeDetector extends AbstractOptionHandler
         implements ChangeDetector {
 
-
-
     /**
      * Change was detected
      */
@@ -50,6 +48,11 @@ public abstract class AbstractChangeDetector extends AbstractOptionHandler
      * Delay in detecting change
      */
     protected double delay;
+    
+     /**
+     * The change detector has been initialized with the option values
+     */
+    protected boolean isInitialized;
 
     /**
      * Resets this change detector. It must be similar to starting a new change
@@ -61,6 +64,7 @@ public abstract class AbstractChangeDetector extends AbstractOptionHandler
         this.isWarningZone = false;
         this.estimation = 0.0;
         this.delay = 0.0;
+        this.isInitialized = false;
     }
 
     /**
