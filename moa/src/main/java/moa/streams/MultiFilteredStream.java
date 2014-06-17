@@ -1,5 +1,5 @@
 /*
- *    FilteredStream.java
+ *    MultiFilteredStream.java
  *    Copyright (C) 2007 University of Waikato, Hamilton, New Zealand
  *    @author Richard Kirkby (rkirkby@cs.waikato.ac.nz)
  *
@@ -23,6 +23,8 @@ import moa.core.InstancesHeader;
 import moa.core.ObjectRepository;
 import moa.options.AbstractOptionHandler;
 import moa.options.ClassOption;
+import moa.options.ListOption;
+import moa.options.Option;
 import moa.options.OptionHandler;
 import moa.streams.filters.StreamFilter;
 import moa.tasks.TaskMonitor;
@@ -34,7 +36,7 @@ import weka.core.Instance;
  * @author Richard Kirkby (rkirkby@cs.waikato.ac.nz)
  * @version $Revision: 7 $
  */
-public class FilteredStream extends AbstractOptionHandler implements
+public class MultiFilteredStream extends AbstractOptionHandler implements
         InstanceStream {
 
     @Override
@@ -48,33 +50,39 @@ public class FilteredStream extends AbstractOptionHandler implements
             "Stream to filter.", InstanceStream.class,
             "generators.RandomTreeGenerator");
 
-    public ClassOption filtersOption = new ClassOption("filters", 'f',
-            "Filters to apply.", StreamFilter.class, 
-            "AddNoiseFilter");
+    public ListOption filtersOption = new ListOption("filters", 'f',
+            "Filters to apply.", new ClassOption("filter", ' ',
+            "Stream filter.", StreamFilter.class, "AddNoiseFilter"),
+            new Option[0], ',');
 
     protected InstanceStream filterChain;
 
     @Override
     public void prepareForUseImpl(TaskMonitor monitor,
             ObjectRepository repository) {
-        StreamFilter filters; 
-            monitor.setCurrentActivity("Materializing filter " //+ (i + 1)
+        Option[] filterOptions = this.filtersOption.getList();
+        StreamFilter[] filters = new StreamFilter[filterOptions.length];
+        for (int i = 0; i < filters.length; i++) {
+            monitor.setCurrentActivity("Materializing filter " + (i + 1)
                     + "...", -1.0);
-            filters = (StreamFilter) getPreparedClassOption(this.filtersOption);
+            filters[i] = (StreamFilter) ((ClassOption) filterOptions[i]).materializeObject(monitor, repository);
             if (monitor.taskShouldAbort()) {
                 return;
             }
-            if (filters instanceof OptionHandler) {
-                monitor.setCurrentActivity("Preparing filter " //+ (i + 1)
+            if (filters[i] instanceof OptionHandler) {
+                monitor.setCurrentActivity("Preparing filter " + (i + 1)
                         + "...", -1.0);
-                ((OptionHandler) filters).prepareForUse(monitor, repository);
+                ((OptionHandler) filters[i]).prepareForUse(monitor, repository);
                 if (monitor.taskShouldAbort()) {
                     return;
                 }
             }
+        }
         InstanceStream chain = (InstanceStream) getPreparedClassOption(this.streamOption);
-            filters.setInputStream(chain);
-            chain = filters;
+        for (int i = 0; i < filters.length; i++) {
+            filters[i].setInputStream(chain);
+            chain = filters[i];
+        }
         this.filterChain = chain;
     }
 
