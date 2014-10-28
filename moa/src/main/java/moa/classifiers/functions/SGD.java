@@ -218,7 +218,7 @@ public class SGD extends AbstractClassifier implements Regressor{
     public void trainOnInstanceImpl(Instance instance) {
 
         if (m_weights == null) {
-            m_weights = new DoubleVector(); 
+            m_weights = new DoubleVector(new double[instance.numAttributes()+1]); 
             m_bias = 0.0;
         }
 

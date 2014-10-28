@@ -53,17 +53,22 @@ import moa.options.*;
 /**
  * Hoeffding Option Tree.
  *
- * <p>Hoeffding Option Trees are regular Hoeffding trees containing additional
+ * <p>
+ * Hoeffding Option Trees are regular Hoeffding trees containing additional
  * option nodes that allow several tests to be applied, leading to multiple
  * Hoeffding trees as separate paths. They consist of a single structure that
  * efﬁciently represents multiple trees. A particular example can travel down
  * multiple paths of the tree, contributing, in different ways, to different
  * options.</p>
  *
- * <p>See for details:</p> <p>B. Pfahringer, G. Holmes, and R. Kirkby. New
- * options for hoeffding trees. In AI, pages 90–99, 2007.</p>
+ * <p>
+ * See for details:</p>
+ * <p>
+ * B. Pfahringer, G. Holmes, and R. Kirkby. New options for hoeffding trees. In
+ * AI, pages 90–99, 2007.</p>
  *
- * <p>Parameters:</p> <ul> <li>-o : Maximum number of option paths per node</li>
+ * <p>
+ * Parameters:</p> <ul> <li>-o : Maximum number of option paths per node</li>
  * <li>-m : Maximum memory consumed by the tree</li> <li>-n : Numeric estimator
  * to use :</li> <ul> <li> Gaussian approximation evaluating 10 splitpoints</li>
  * <li> Gaussian approximation evaluating 100 splitpoints</li> <li>
@@ -80,11 +85,11 @@ import moa.options.*;
  * decide</li> <li>-t : Threshold below which a split will be forced to break
  * ties</li> <li>-b : Only allow binary splits</li> <li>-z : Memory strategy to
  * use</li> <li>-r : Disable poor attributes</li> <li>-p : Disable
- * pre-pruning</li> <li>-d : File to append option table to.</li> 
- *  <li> -l : Leaf prediction to use: MajorityClass (MC), Naive Bayes (NB) or NaiveBayes
- * adaptive (NBAdaptive).</li>
- *  <li> -q : The number of instances a leaf should observe before
- * permitting Naive Bayes</li>
+ * pre-pruning</li> <li>-d : File to append option table to.</li>
+ * <li> -l : Leaf prediction to use: MajorityClass (MC), Naive Bayes (NB) or
+ * NaiveBayes adaptive (NBAdaptive).</li>
+ * <li> -q : The number of instances a leaf should observe before permitting
+ * Naive Bayes</li>
  * </ul>
  *
  * @author Richard Kirkby (rkirkby@cs.waikato.ac.nz)
@@ -390,7 +395,11 @@ public class HoeffdingOptionTree extends AbstractClassifier {
                 SplitCriterion splitCriterion, double[] preDist) {
             double[][] postDists = new double[this.children.size()][];
             for (int i = 0; i < this.children.size(); i++) {
-                postDists[i] = this.children.get(i).getObservedClassDistribution();
+                if (this.children.get(i) != null) {
+                    postDists[i] = this.children.get(i).getObservedClassDistribution();
+                } else {
+                    System.out.println("error");
+                }
             }
             return splitCriterion.getMeritOfSplit(preDist, postDists);
         }
@@ -571,8 +580,8 @@ public class HoeffdingOptionTree extends AbstractClassifier {
                 // add null split as an option
                 bestSuggestions.add(new AttributeSplitSuggestion(null,
                         new double[0][], criterion.getMeritOfSplit(
-                        preSplitDist,
-                        new double[][]{preSplitDist})));
+                                preSplitDist,
+                                new double[][]{preSplitDist})));
             }
             for (int i = 0; i < this.attributeObservers.size(); i++) {
                 AttributeClassObserver obs = this.attributeObservers.get(i);
@@ -709,21 +718,21 @@ public class HoeffdingOptionTree extends AbstractClassifier {
     @Override
     protected Measurement[] getModelMeasurementsImpl() {
         return new Measurement[]{
-                    new Measurement("tree size (nodes)", this.decisionNodeCount
-                    + this.activeLeafNodeCount + this.inactiveLeafNodeCount),
-                    new Measurement("tree size (leaves)", this.activeLeafNodeCount
-                    + this.inactiveLeafNodeCount),
-                    new Measurement("active learning leaves",
-                    this.activeLeafNodeCount),
-                    new Measurement("tree depth", measureTreeDepth()),
-                    new Measurement("active leaf byte size estimate",
-                    this.activeLeafByteSizeEstimate),
-                    new Measurement("inactive leaf byte size estimate",
-                    this.inactiveLeafByteSizeEstimate),
-                    new Measurement("byte size estimate overhead",
-                    this.byteSizeEstimateOverheadFraction),
-                    new Measurement("maximum prediction paths used",
-                    this.maxPredictionPaths)};
+            new Measurement("tree size (nodes)", this.decisionNodeCount
+            + this.activeLeafNodeCount + this.inactiveLeafNodeCount),
+            new Measurement("tree size (leaves)", this.activeLeafNodeCount
+            + this.inactiveLeafNodeCount),
+            new Measurement("active learning leaves",
+            this.activeLeafNodeCount),
+            new Measurement("tree depth", measureTreeDepth()),
+            new Measurement("active leaf byte size estimate",
+            this.activeLeafByteSizeEstimate),
+            new Measurement("inactive leaf byte size estimate",
+            this.inactiveLeafByteSizeEstimate),
+            new Measurement("byte size estimate overhead",
+            this.byteSizeEstimateOverheadFraction),
+            new Measurement("maximum prediction paths used",
+            this.maxPredictionPaths)};
     }
 
     public int measureTreeDepth() {
@@ -1132,7 +1141,7 @@ public class HoeffdingOptionTree extends AbstractClassifier {
 
         @Override
         public double[] getClassVotes(Instance inst, HoeffdingOptionTree hot) {
-            if (getWeightSeen() >=  hot.nbThresholdOption.getValue()) {
+            if (getWeightSeen() >= hot.nbThresholdOption.getValue()) {
                 return NaiveBayes.doNaiveBayesPrediction(inst,
                         this.observedClassDistribution,
                         this.attributeObservers);
@@ -1194,6 +1203,9 @@ public class HoeffdingOptionTree extends AbstractClassifier {
             ret = new LearningNodeNB(initialClassObservations);
         } else { //NBAdaptive
             ret = new LearningNodeNBAdaptive(initialClassObservations);
+        }
+        if (ret == null) {
+            System.out.println("error");
         }
         return ret;
     }
