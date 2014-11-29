@@ -130,7 +130,7 @@ public class FIMTDD extends AbstractClassifier implements Regressor {
 
 	public FlagOption regressionTreeOption = new FlagOption(
 			"regressionTree",
-			'r',
+			'e',
 			"Build a regression tree instead of a model tree.");
 
 	public FloatOption learningRatioOption = new FloatOption(
@@ -571,12 +571,11 @@ public class FIMTDD extends AbstractClassifier implements Regressor {
 
 			// Initialize perceptron if necessary   
 			if (this.reset == true) {
-				Random r = new Random();
 				reset = false;
 				weightAttribute = new DoubleVector();
 				instancesSeen = 0;
 				for (int j = 0; j < inst.numAttributes(); j++) { // The last index corresponds to the constant b
-					weightAttribute.setValue(j, 2 * r.nextDouble() - 1);
+					weightAttribute.setValue(j, 2 * tree.classifierRandom.nextDouble() - 1);
 				}
 			}
 
@@ -687,7 +686,7 @@ public class FIMTDD extends AbstractClassifier implements Regressor {
 	}
 
 	public boolean isRandomizable() {
-		return false;
+		return true;
 	}
 
 	public void getModelDescription(StringBuilder out, int indent) {
